@@ -259,13 +259,15 @@ fn main() {
     glfw.window_hint(glfw::WindowHint::OpenGlProfile(glfw::OpenGlProfileHint::Core));
 
 
-    
+
     let (mut window, events) = glfw.create_window(600, 800, "Proof that intel is broken", glfw::WindowMode::Windowed)
         .expect("Failed to create GLFW window.");
-    gl::load_with(|s| window.get_proc_address(s) as *const _);
 
     window.set_key_polling(true);
     window.make_current();
+
+    gl::load_with(|s| window.get_proc_address(s));
+
 
     unsafe {
         gl::Enable(gl::DEPTH_TEST);
