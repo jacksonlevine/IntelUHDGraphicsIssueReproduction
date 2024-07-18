@@ -252,6 +252,14 @@ impl TestThing {
 fn main() {
     let mut glfw = glfw::init(glfw::fail_on_errors).unwrap();
 
+
+    glfw.window_hint(glfw::WindowHint::ContextVersionMajor(4));
+    glfw.window_hint(glfw::WindowHint::ContextVersionMinor(1));
+    glfw.window_hint(glfw::WindowHint::OpenGlForwardCompat(true));
+    glfw.window_hint(glfw::WindowHint::OpenGlProfile(glfw::OpenGlProfileHint::Core));
+
+
+    
     let (mut window, events) = glfw.create_window(600, 800, "Proof that intel is broken", glfw::WindowMode::Windowed)
         .expect("Failed to create GLFW window.");
     gl::load_with(|s| window.get_proc_address(s) as *const _);
